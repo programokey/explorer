@@ -1,4 +1,4 @@
-import request from 'superagent'
+import axios from 'axios'
 
 const state = {
   url: 'http://116.62.62.39:46657',
@@ -9,26 +9,22 @@ const state = {
       latest_block_hash: ''
     }
   },
-  validators: {}
+  validators: []
 }
 
 const mutations = {
   setUrl (state, value) {
     state.url = value
   },
-  getStatus (state) {
-    request.get(state.url + '/status').end((err, res) => {
-      if (err) {
-        console.log('err', err)
-      }
-      state.status = res.body.result
-    })
+  async getStatus (state) {
+    let json = await axios.get(`${state.url}/status`)
+    console.log('blockchain', json.data)
+    state.status = json.data.result
   },
-  getValidators (state) {
-    request.get(state.url + '/net_info').end((err, res) => {
-      if (err) console.error(err)
-      state.validators = res.body.result.peers
-    })
+  async getValidators (state) {
+    let json = await axios.get(`${state.url}/net_info`)
+    console.log('validators', json.data)
+    state.validators = json.data.result.peers
   }
 }
 

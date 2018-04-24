@@ -30,9 +30,6 @@ export default {
     TabBar,
     ToolBar
   },
-  data: () => ({
-    todoAtoms: '13.37M ATOM'
-  }),
   computed: {
     ...mapGetters(['validators']),
     values () {

@@ -35,7 +35,8 @@ page(:title="`Block ${block.header.height}`")
 </template>
 
 <script>
-import request from 'superagent'
+import { mapGetters } from 'vuex'
+import axios from 'axios'
 import ToolBar from './NiToolBar'
 import ListItem from './NiListItem'
 import Part from './NiPart'
@@ -47,6 +48,9 @@ export default {
     ListItem,
     Part,
     Page
+  },
+  computed: {
+    ...mapGetters(['bc'])
   },
   data: () => ({
     blockUrl: '',
@@ -126,18 +130,11 @@ export default {
     }
   }),
   methods: {
-    fetchBlock () {
-      this.blockUrl = 'http://206.189.22.179:46657/block?height=' +
-        this.$route.params.block
-
-      request.get(this.blockUrl).end((err, res) => {
-        if (err) console.log('err', err)
-        let blockData = res.body.result
-        // console.log('block', JSON.stringify(blockData, null, 2))
-
-        this.block_meta = blockData.block_meta
-        this.block = blockData.block
-      })
+    async fetchBlock () {
+      let url = `${this.bc.url}/block?height=${this.$route.params.block}`
+      let json = await axios.get(url)
+      this.block_meta = json.data.result.block_meta
+      this.block_meta = json.data.result.block
     }
   },
   mounted () {
