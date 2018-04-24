@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const state = {
-  url: 'http://116.62.62.39:46657',
+  url: 'http://206.189.22.179:46657',
   status: {
     listen_addr: '',
     sync_info: {
@@ -23,7 +23,7 @@ const mutations = {
   },
   async getValidators (state) {
     let json = await axios.get(`${state.url}/net_info`)
-    // console.log('validators', json.data)
+    console.log('validators', json.data.result.peers)
     state.validators = json.data.result.peers
   }
 }
