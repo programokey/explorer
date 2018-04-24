@@ -177,4 +177,14 @@ a.ni-li-dd
   position absolute
   top 0
   right 0
+
+input#node-input
+  min-width 20rem
+  height 2rem
+  padding 0 0.5rem
+  background transparent
+  color #f00
+  margin 0.5rem 0
+  border 1px solid input-bc
+  df()
 </style>

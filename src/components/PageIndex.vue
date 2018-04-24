@@ -12,8 +12,8 @@ page(title='Blockchain')
     list-item(dt='Latest Block Hash' :dd='bc.status.sync_info.latest_block_hash')
 
   part(title='Connected Node')
-    // list-item(label='Node IP' :input='bc.connectedIp')
-    list-item(dt='Node IP' dd='206.189.22.179')
+    list-item(dt='Node IP')
+      div(slot="dd"): input#node-input(v-model="bc.url")
     list-item(dt='Node Moniker' :dd='bc.status.node_info.moniker')
 </template>
 
@@ -48,3 +48,15 @@ export default {
   }
 }
 </script>
+
+<style lang='stylus'>
+@require '~variables'
+
+input#node-input
+  min-width 20rem
+  height 2rem
+  padding 0 0.5rem
+  background transparent
+  df()
+  #f00
+</style

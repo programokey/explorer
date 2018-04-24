@@ -18,12 +18,12 @@ const mutations = {
   },
   async getStatus (state) {
     let json = await axios.get(`${state.url}/status`)
-    console.log('blockchain', json.data)
+    // console.log('blockchain', json.data)
     state.status = json.data.result
   },
   async getValidators (state) {
     let json = await axios.get(`${state.url}/net_info`)
-    console.log('validators', json.data)
+    // console.log('validators', json.data)
     state.validators = json.data.result.peers
   }
 }
