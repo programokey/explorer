@@ -32,11 +32,7 @@ export default {
     Part
   },
   computed: {
-    ...mapGetters(['blockchain', 'config', 'validators']),
-    bc () { return this.blockchain },
-    avgTxThroughput () {
-      return Math.round(this.bc.network.avg_tx_throughput * 1000) / 1000
-    }
+    ...mapGetters(['bc', 'config', 'validators'])
   },
   data: () => ({
     moment: moment,

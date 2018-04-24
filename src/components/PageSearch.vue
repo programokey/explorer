@@ -44,7 +44,7 @@ export default {
     Part
   },
   computed: {
-    ...mapGetters(['blockchain'])
+    ...mapGetters(['bc'])
   },
   data: () => ({
     query: ''

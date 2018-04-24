@@ -17,7 +17,7 @@ yarn build
 
 ## Change Watched Node
 
-In `./src/store/modules/blockchain.js` and `./src/store/modules/validators.js`, change the `let url = ` line to the Tendermint RPC of your choice.
+In `./src/store/modules/blockchain.js` change the `url` line to the Tendermint RPC of your choice.
 
 ## Run the built version locally
 

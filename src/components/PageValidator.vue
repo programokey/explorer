@@ -2,7 +2,7 @@
 page(:title="`Node: ${getIp(validator)}`")
   tool-bar
     router-link(to="/validators" exact): i.material-icons arrow_back
-    anchor-copy(:value="validator.node_info.pub_key.value" icon="content_copy")
+    anchor-copy(:value="validator.node_info.id" icon="content_copy")
 
   part(title='ID')
     list-item(dt="Moniker" :dd="validator.node_info.moniker")
@@ -10,8 +10,8 @@ page(:title="`Node: ${getIp(validator)}`")
     list-item(dt="Start Date" :dd="readableDate(validator.connection_status.SendMonitor.Start)")
 
   part(title='Pub Key')
-    list-item(dt="Type" :dd="validator.node_info.pub_key.type")
-    list-item(dt="Info" :dd="validator.node_info.pub_key.value")
+    list-item(dt="Value" :dd="validator.node_info.id")
+
   part(title='Network')
     list-item(dt="Network" :dd="validator.node_info.network")
     list-item(dt="Version" :dd="validator.node_info.version")
@@ -53,8 +53,10 @@ export default {
     validator () {
       if (this.validators && this.validators.length > 0) {
         return this.validators.find(
-          v => this.urlsafeIp(v.node_info.listen_addr) ===
-            this.$route.params.validator + ':46656')
+          v =>
+            this.urlsafeIp(v.node_info.listen_addr) ===
+            this.$route.params.validator + ':46656'
+        )
       } else {
         return this.tmpValidator
       }
@@ -80,7 +82,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.validator)
+    setInterval(console.log(this.validator), 1000)
   }
 }
 </script>
