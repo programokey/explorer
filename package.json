@@ -54,7 +54,7 @@
     "http-proxy-middleware": "0.17.3",
     "lodash": "4.17.4",
     "markdown-it": "8.3.1",
-    "moment": "2.18.1",
+    "moment": "^2.22.1",
     "nib": "1.1.2",
     "numeral": "2.0.6",
     "opn": "4.0.2",
