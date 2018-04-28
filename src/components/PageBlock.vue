@@ -134,11 +134,11 @@ export default {
       let url = `${this.bc.url}/block?height=${this.$route.params.block}`
       let json = await axios.get(url)
       this.block_meta = json.data.result.block_meta
-      this.block_meta = json.data.result.block
+      this.block = json.data.result.block
     }
   },
-  mounted () {
-    this.fetchBlock()
+  async mounted () {
+    await this.fetchBlock()
   },
   watch: {
     '$route' (to, from) {

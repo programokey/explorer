@@ -23,7 +23,7 @@ const mutations = {
   },
   async getValidators (state) {
     let json = await axios.get(`${state.url}/net_info`)
-    console.log('validators', json.data.result.peers)
+    // console.log('validators', json.data.result.peers)
     state.validators = json.data.result.peers
   }
 }

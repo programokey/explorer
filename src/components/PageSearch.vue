@@ -1,26 +1,23 @@
 <template lang="pug">
 page(title='Search')
   part(title='Search')
-    form-struct(:submit="onSubmit")
+    form-struct(:submit="search")
       form-group
-        // label(for='search-input') Input
         field#search-input(
-          disabled
-          theme="cosmos"
           type="text"
-          placeholder="(search is coming soon)"
+          placeholder="Search for block"
           required
           v-model="query"
           pattern=".{1,60}"
           title="1 to 60 characters")
       div(slot="footer")
         div
-        btn(theme="cosmos" icon="search" value="Go")
+        btn(type="submit" icon="search" value="Go")
 
   part(title='Sample Queries')
-    list-item(dt='Address' dd='3HNSiAq7wFDaPsYDcUxNSRMD78qVcYKicw' @click.native="fillField('3HNSiAq7wFDaPsYDcUxNSRMD78qVcYKicw')")
-    list-item(dt='Transaction' dd='878797d16182f6ffa5e98cd88576ab973b8d6f9dfe8ff441bd3521a7d8559800' @click.native="fillField('878797d16182f6ffa5e98cd88576ab973b8d6f9dfe8ff441bd3521a7d8559800')")
-    list-item(dt='Block #' dd='112436' @click.native="fillField('112436')")
+    // list-item(dt='Address' dd='3HNSiAq7wFDaPsYDcUxNSRMD78qVcYKicw' @click.native="fillField('3HNSiAq7wFDaPsYDcUxNSRMD78qVcYKicw')")
+    // list-item(dt='Transaction' dd='878797d16182f6ffa5e98cd88576ab973b8d6f9dfe8ff441bd3521a7d8559800' @click.native="fillField('878797d16182f6ffa5e98cd88576ab973b8d6f9dfe8ff441bd3521a7d8559800')")
+    list-item(dt='Block #' dd='1337' @click.native="fillField('1337')")
 </template>
 
 <script>
@@ -53,8 +50,12 @@ export default {
     fillField (value) {
       this.query = value
     },
-    onSubmit () {
-      alert('Search functionality is coming soon. Please have patience!')
+    search () {
+      if (parseInt(this.query)) {
+        this.$router.push({ name: 'block', params: { block: this.query } })
+      } else {
+        console.log('Only block # queries are supported right now', this.query)
+      }
     }
   }
 }
